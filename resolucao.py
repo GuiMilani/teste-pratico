@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import json
 
 def json2py(filename):
@@ -57,11 +56,18 @@ def sort(data):
         print(i["name"])
 
 def sum_by_category(data):
-    dic
+    total_sum = {}
     for i in data:
+        if(not total_sum.get(i["category"])):
+            total_sum[i["category"]] = 0
+
         for x in range(i["quantity"]):
-            total_sum += i["price"]
-    print(total_sum)
+            total_sum[i["category"]] += i["price"]
+
+    for i in total_sum:
+        total_sum[i] = round(total_sum[i], 2)
+    
+    return total_sum
 
 def main():
     data = json2py("broken-database.json")
@@ -75,7 +81,12 @@ def main():
 
     py2json(data)
 
-    sum_by_category(data)
+    sort(data)
+
+    inventory_valuation = sum_by_category(data)
+    
+    print()
+    print(inventory_valuation)
 
 
 if __name__ == "__main__":
