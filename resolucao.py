@@ -61,7 +61,7 @@ def fix_price(data):
 #repara as entradas sem o campo quantidade
 def fix_quantity(data):
     for entry in data: 
-        if entry.get("quantity", value=1) == 1: #o metodo get ira retornar 1 caso nao houver o campo quantity
+        if entry.get("quantity", 1) == 1: #o metodo get ira retornar 1 caso nao houver o campo quantity
             entry["quantity"] = 0
 
 #funcao para ordenar o db conforme ordem especificada e imprimir os nomes nessa nova ordem
